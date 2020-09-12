@@ -20,15 +20,19 @@ $(function () {
     //监听file的change事件
     $('#file').on('change', function (e) {
         var filelist = e.target.files
-        if (filelist.length == 0) {
-            return layer.msg('1213')
+        if (filelist.length === 0) {
+            return layer.msg('请选择照片！')
         }
+
         var file = filelist[0]
         var newImgURL = URL.createObjectURL(file)
         $image
             .cropper('destroy')
             .attr('src', newImgURL)
             .cropper(options)
+    })
+    //为 确定 按钮绑定点击事件
+    $('#btn_local').on('click', function () {
         var dataURL = $image
             .cropper('getCroppedCanvas', {
                 width: 100,
@@ -49,4 +53,6 @@ $(function () {
             }
         })
     })
+
+
 })
