@@ -29,29 +29,13 @@ $(function () {
     // 监听注册表单的提交事件
     $('#form_reg').on('submit', function (e) {
         e.preventDefault()
-        // $.post('http://ajax.frontend.itheima.net/api/reguser', { username: $('#form_reg [name=username]').val(), password: $('#form_reg [name=password]').val() }, function (res) {
-        //     if (res.status !== 0) {
-        //         return layer.msg(res.message);
-        //     }
-        //     layer.msg(res.message);
-        //     // 模拟人类点击登录
-        //     $('#link_login').click()
-        // })
-        $.ajax({
-            tyoe: 'POST',
-            url: '/api/reguser',
-            data: {
-                username: $('#form_reg [name=username]').val(),
-                password: $('#form_reg [name=password]').val()
-            },
-            success: function (res) {
-                if (res.status !== 0) {
-                    return layer.msg(res.message);
-                }
-                layer.msg(res.message);
-                // 模拟人类点击登录
-                $('#link_login').click()
+        $.post('/api/reguser', { username: $('#form_reg [name=username]').val(), password: $('#form_reg [name=password]').val() }, function (res) {
+            if (res.status !== 0) {
+                return layer.msg(res.message);
             }
+            layer.msg(res.message);
+            // 模拟人类点击登录
+            $('#link_login').click()
         })
     })
     // 监听登录表单的提交事件
